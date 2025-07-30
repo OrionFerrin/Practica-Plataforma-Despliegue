@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>School Cafeteria Products</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin: 2em; }
+    h1 { color: #2c3e50; }
+    table { border-collapse: collapse; width: 50%; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+    th { background: #f4f4f4; }
+  </style>
+</head>
+<body>
+  <h1>School Cafeteria Products</h1>
+  <table id="products-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Price ($)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- Products will be inserted here -->
+    </tbody>
+  </table>
+  <script>
+    fetch('/products')
+      .then(response => response.json())
+      .then(products => {
+        const tbody = document.querySelector('#products-table tbody');
+        products.forEach(product => {
+          const row = document.createElement('tr');
+          row.innerHTML = `<td>${product.id}</td><td>${product.name}</td><td>${product.price.toFixed(2)}</td>`;
+          tbody.appendChild(row);
+        });
+      })
+      .catch(err => {
+        alert('Error loading products');
+      });
+  </script>
+</body>
+</html>
