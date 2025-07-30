@@ -1,13 +1,6 @@
 const express = require('express');
-const bodyParser = require('body-parser');
-const routes = require('./routes/index');
-const products = require('./models/products');
-
 const app = express();
-const PORT = 3000;
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+const products = require('./models/products');
 
 // Middleware to parse JSON
 app.use(express.json());
@@ -21,6 +14,6 @@ app.get('/products', (req, res) => {
 });
 
 // Start server on port 3000
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`);
+app.listen(3000, () => {
+  console.log('Server running on http://localhost:3000');
 });
