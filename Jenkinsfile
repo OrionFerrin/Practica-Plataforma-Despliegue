@@ -31,4 +31,15 @@ pipeline {
             }
         }
     }
-}
+    post {
+        always {
+            junit 'test-results.xml'
+            archiveArtifacts artifacts: 'school-cafeteria-api.tar', fingerprint: true
+        }
+        success {
+            echo 'Pipeline completed successfully!'
+        }
+        failure {
+            echo 'Pipeline failed!'
+        }
+    }
