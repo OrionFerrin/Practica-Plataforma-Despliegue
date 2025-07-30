@@ -17,20 +17,20 @@ pipeline {
                 sh 'npm install'
             }
         }
-            stage('Ejecutar Tests') {
+        stage('Ejecutar Tests') {
             steps {
                 sh 'chmod +x ./node_modules/.bin/jest'  // Soluciona el problema de permisos
                 sh 'test/server.test.js --ci --runInBand' // Ejecuta los tests de Jest
             }
         }
+        // Se eliminó la llave de cierre extra que estaba aquí.
  
-        }
         stage('Build Docker image') {
             steps {
                 sh 'docker build -t school-cafeteria-api .'
             }
         }
-    }
+    } // El bloque 'stages' ahora cierra aquí, incluyendo todas las etapas.
     post {
         always {
             junit 'test-results.xml'
@@ -43,3 +43,4 @@ pipeline {
             echo 'Pipeline failed!'
         }
     }
+}
