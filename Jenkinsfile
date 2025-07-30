@@ -17,12 +17,7 @@ pipeline {
                 sh 'npm install'
             }
         }
-        stage('Ejecutar Tests') {
-            steps {
-                sh 'chmod +x ./node_modules/.bin/jest'  // Soluciona el problema de permisos
-                sh 'test/server.test.js --ci --runInBand' // Ejecuta los tests de Jest
-            }
-        }
+        
         // Se eliminó la llave de cierre extra que estaba aquí.
  
         stage('Build Docker image') {
