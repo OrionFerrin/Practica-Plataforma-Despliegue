@@ -31,16 +31,5 @@ pipeline {
             }
         }
     } // El bloque 'stages' ahora cierra aquí, incluyendo todas las etapas.
-    post {
-        always {
-            junit 'test-results.xml'
-            archiveArtifacts artifacts: 'school-cafeteria-api.tar', fingerprint: true
-        }
-        success {
-            echo 'Pipeline completed successfully!'
-        }
-        failure {
-            echo 'Pipeline failed!'
-        }
-    }
+   
 }
